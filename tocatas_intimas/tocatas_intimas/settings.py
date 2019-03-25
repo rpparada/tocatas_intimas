@@ -32,12 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tocatas.apps.TocatasConfig',
+    'artistas.apps.ArtistasConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +79,13 @@ WSGI_APPLICATION = 'tocatas_intimas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+#        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'tidb',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER' : 'postgres',
+        'PASSWORD' : 'Nofumar1024',
+        'HOST': 'localhost'
     }
 }
 
@@ -120,3 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# Media Folder Settings
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'

@@ -1,0 +1,11 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+
+{% block branding %}
+ <h1 id="head"> <img src="{% static 'tocatas_intimas/img/logo.png'%}" alt="Tocatas Intimas" height="50" width="80" class="brand_img">
+   Tocatas Intimas
+ </h1>
+{% endblock %}
+{% block extrastyle %}
+ <link rel="stylesheet" href="{% static 'tocatas_intimas/css/admin_ti.css' %}">
+{% endblock %}
