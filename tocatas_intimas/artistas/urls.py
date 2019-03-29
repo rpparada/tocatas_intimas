@@ -5,5 +5,5 @@ from . import views
 urlpatterns = [
     path('',views.index, name='artistas'),
     path('<int:artista_id>',views.tocata, name='artista'),
-    path('busqueda',views.busqueda, name='busqueda'),
+    #path('busqueda',views.busqueda, name='busqueda'),
 ]

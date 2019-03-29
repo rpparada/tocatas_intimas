@@ -1,81 +1,93 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
-<!-- Custom styles for this template -->
-<link href="{% static 'tocatas_intimas/css/heroic-features.css' %}" rel="stylesheet">
+
 {% block content %}
-<!-- Page Content -->
-<div class="container">
+  <!-- Page Content -->
+  <div class="container">
 
-  <!-- Jumbotron Header -->
-  <header class="jumbotron my-4">
-    <h1 class="display-3">A Warm Welcome!</h1>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-    <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
-  </header>
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Portfolio 3
+      <small>Subheading</small>
+    </h1>
 
-  {% if tocatas %}
-    {% for tocata in tocatas %}
-    <div class="row text-center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="breadcrumb-item active">Portfolio 3</li>
+    </ol>
 
-      <div class="col-lg-3 col-md-6 mb-4">
-        <div class="card h-100">
-          <img class="card-img-top" src="{{ tocata.flayer.url }}" alt="">
-          <div class="card-body">
-            <h4 class="card-title">{{ tocata.nombre }}</h4>
-            <h5 class="card-title"> {{ tocata.adhesion | intcomma }}</h5>
-            <h5 class="card-title"> {{ tocata.fecha | timesince }}</h5>
-            <p class="card-text">{{ tocata.observaciones }}</p>
+    <div class="row">
+      {% if tocatas %}
+        {% for tocata in tocatas %}
+          <div class="col-lg-4 col-sm-6 portfolio-item">
+            <div class="card h-100">
+              <a href="#"><img class="card-img-top" src="{{ tocata.flayer.url }}" alt=""></a>
+              <div class="card-body">
+                <h4 class="card-title">
+                  <a href="{% url 'tocata' tocata.id %}">{{ tocata.nombre }}</a>
+                </h4>
+                <p class="card-text">{{ tocata.observaciones }}</p>
+              </div>
+            </div>
           </div>
-          <div class="card-footer">
-            <a href="{% url 'tocata' tocata.id %}" class="btn btn-primary">Mas Detalles!</a>
-          </div>
+        {% endfor  %}
+      {% else %}
+        <div class="col-md-12">
+          <p>No hay tocatas Intimas</p>
         </div>
-      </div>
-    </div>
-    {% endfor  %}
-  {% else %}
-    <div class="col-md-12">
-      <p>No hay tocatas Intimas</p>
-    </div>
-  {% endif %}
-
-  <div class="row">
-    <div class="col-md-12">
-      {% if tocatas.has_other_pages %}
-        <ul class="pagination">
-          {% if tocatas.has_previous %}
-           <li class="page-item">
-             <a href="?page={{tocatas.previous_page_number}}" class="page-link">&laquo;</a>
-           </li>
-          {% else %}
-            <li class="page-item disable">
-              <a class="page-link">&laquo;</a>
-            </li>
-          {% endif %}
-          {% for i in tocatas.paginator.page_range %}
-            {% if tocatas.number == i %}
-              <li class="page-item active">
-                <a class="page-link">{{i}}</a>
-              </li>
-            {% else %}
-              <li class="page-item">
-                <a href="?page={{i}}" class="page-link">{{i}}</a>
-              </li>
-            {% endif %}
-          {% endfor %}
-          {% if tocatas.has_next %}
-           <li class="page-item">
-             <a href="?page={{tocatas.next_page_number}}" class="page-link">&raquo;</a>
-           </li>
-          {% else %}
-            <li class="page-item disable">
-              <a class="page-link">&raquo;</a>
-            </li>
-          {% endif %}
-        </ul>
       {% endif %}
     </div>
+
+    <!-- Pagination -->
+    {% if tocatas.has_other_pages %}
+      <ul class="pagination justify-content-center">
+        {% if tocatas.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{tocatas.previous_page_number}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+        {% else %}
+          <li class="page-item disable">
+            <a class="page-link" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+        {% endif %}
+
+        {% for i in tocatas.paginator.page_range %}
+          {% if tocatas.number == i %}
+            <li class="page-item active">
+              <a class="page-link">{{i}}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a href="?page={{i}}" class="page-link">{{i}}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if tocatas.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{tocatas.next_page_number}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        {% else %}
+        <li class="page-item disable">
+          <a class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+
   </div>
-</div>
 {% endblock %}

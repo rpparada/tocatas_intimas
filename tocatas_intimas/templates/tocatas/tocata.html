@@ -1,5 +1,44 @@
 {% extends "base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
-<h1>Tocata</h1>
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">{{ tocata.nombre }}
+      <small>{{ tocata.artista }}</small>
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">{{ tocata.nombre }}</li>
+    </ol>
+
+    <!-- Portfolio Item Row -->
+    <div class="row">
+
+      <div class="col-md-8">
+        <img class="img-fluid" src="{{ tocata.flayer.url }}" alt="">
+      </div>
+
+      <div class="col-md-4">
+        <h3 class="my-3">Observaciones</h3>
+        <p>{{ tocata.observaciones }}</p>
+        <h3 class="my-3">Detalles</h3>
+        <ul>
+          <li>Adhesion: {{ tocata.adhesion | intcomma }}</li>
+          <li>Fecha: {{ tocata.fecha }}</li>
+          <li>Direccion: {{ tocata.direccion }}</li>
+          <li>Medio de Pago: {{ tocata.medio_pago }}</li>
+          <li>Tipo: {{ tocata.tipo }}</li>
+        </ul>
+      </div>
+
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
 {% endblock %}

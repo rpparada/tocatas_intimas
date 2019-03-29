@@ -20,7 +20,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('',views.Index.as_view(), name='index'),
+    path('',views.index, name='index'),
+    #path('',views.Index.as_view(), name='index'),
     path('tocatas/',include('tocatas.urls')),
     path('artistas/',include('artistas.urls')),
     path('admin/', admin.site.urls),
