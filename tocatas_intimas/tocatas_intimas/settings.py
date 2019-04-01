@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'tocatas.apps.TocatasConfig',
     'artistas.apps.ArtistasConfig',
+    'cuentas.apps.CuentasConfig',
+    'locacion.apps.LocacionConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
