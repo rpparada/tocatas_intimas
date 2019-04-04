@@ -1,143 +1,171 @@
 {% extends "base.html" %}
 {% load static %}
 {% load humanize %}
-  {% block content %}
-  <header>
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('{% static "tocatas_intimas/img/foto01.jpg" %}')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>First Slide</h3>
-            <p>This is a description for the first slide.</p>
-          </div>
-        </div>
-        <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('{% static "tocatas_intimas/img/foto02.jpg" %}')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>Second Slide</h3>
-            <p>This is a description for the second slide.</p>
-          </div>
-        </div>
-        <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('{% static "tocatas_intimas/img/foto03.jpg" %}')">
-          <div class="carousel-caption d-none d-md-block">
-            <h3>Third Slide</h3>
-            <p>This is a description for the third slide.</p>
-          </div>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
+{% block content %}
+<div class="slider rs-slider full-width load">
+  <div class="tp-banner-container">
+  <div class="rev_slider tp-banner">
+    <ul>
+    <li data-delay="7000" data-transition="slidehorizontal" data-masterspeed="1000">
+      <div class="elements">
+      <h2 class="tp-caption title"
+        data-x="15"
+        data-y="240"
+        data-voffset="170"
+        data-start="700"
+        data-transform_in="x:left;s:1000;e:Power4.easeOut"
+        data-transform_out="x:left;s:400;e:Power1.easeIn">
+        FULLY<br>
+        <b>RESPONSIVE</b> &amp;<br>
+        <b>RETINA READY</b><br>
+        THEME
+      </h2>
+
+      <a href="#"
+        class="tp-caption btn btn-link"
+        data-x="15"
+        data-y="500"
+        data-start="700"
+        data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+        data-transform_out="y:bottom;s:400;e:Power1.easeIn">
+        LEARN MORE<i class="fa fa-angle-right"></i></a>
       </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </header>
 
-  <!-- Buscador Inicio -->
-  <div class="container text-center">
-    <div class="home-search p-5">
-      <div class="overlay p-5">
-        <h1 class="display-4 mb-4">
-          Busca tu Tocata Intima, Artista, Locacion, etc.
-        </h1>
-        <p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Recusandae quas, asperiores eveniet vel nostrum magnam
-          voluptatum tempore! Consectetur, id commodi!</p>
-        <div class="search">
-          <form action="{% url 'busqueda' %}">
-            <!-- Form Row 1 -->
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">A Buscar</label>
-                <input type="text" name="palabra" class="form-control" placeholder="A Buscar (Artista, locacion, etc)">
-              </div>
-
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">Ciudad</label>
-                <input type="text" name="ciudad" class="form-control" placeholder="Ciudad">
-              </div>
-
-              <div class="col-md-4 mb-3">
-                <label class="sr-only">State</label>
-                <select name="region" class="form-control">
-                  <option selected="true" disabled="disabled">Regiones</option>
-                  {% for key,value in regiones.items %}
-                    <option value="{{ key }}" {% if key == valores.region %} selected {% endif %}>
-                      {{ value }}
-                    </option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-            <!-- Form Row 2 -->
-            <div class="form-row">
-              <div class="col-md-6 mb-3">
-                <label class="sr-only">Medios_pago</label>
-                <select name="medios_pago" class="form-control">
-                  <option selected="true" disabled="disabled">Medios de Pago</option>
-                  {% for key,value in medios_pago.items %}
-                  <option value="{{ key }}">{{ value }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-              <div class="col-md-6 mb-3">
-                <select name="tipo" class="form-control" id="type">
-                  <option selected="true" disabled="disabled">Tipo</option>
-                  {% for key,value in tipo.items %}
-                  <option value="{{ key }}">{{ value }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-            <button class="btn btn-secondary btn-block mt-4" type="submit">Submit form</button>
-          </form>
-        </div>
+      <div class="tp-caption"
+        data-x="500"
+        data-y="20"
+        data-start="450"
+        data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+        data-transform_out="y:bottom;s:500;e:Power1.easeIn"
+        style="z-index: 3">
+        <img class="replace-2x" src="{% static 'tocatas_intimas/content/img/slider/slide-4-11.png' %}" width="" height="" alt="">
       </div>
-    </div>
+      </div>
+
+      <img class="replace-2x" src="{% static 'tocatas_intimas/content/img/slider/slide-4-1.jpg' %}" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+    </li>
+
+    <li data-delay="7000" data-transition="slidehorizontal" data-masterspeed="1000">
+      <div class="elements">
+      <h2 class="tp-caption title"
+        data-x="15"
+        data-y="240"
+        data-start="700"
+        data-transform_in="x:left;s:1000;e:Power4.easeOut"
+        data-transform_out="x:left;s:400;e:Power1.easeIn">
+        FANTASTIC<br>
+        <b>COLORFUL</b> &amp;<br>
+        <b>POWERFUL</b><br>
+        THEME
+      </h2>
+
+      <a href="#"
+        class="tp-caption btn btn-link"
+        data-x="15"
+        data-y="500"
+        data-start="700"
+        data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+        data-transform_out="y:bottom;s:400;e:Power1.easeIn">
+        LEARN MORE<i class="fa fa-angle-right"></i></a>
+      </a>
+      </div>
+
+      <img class="replace-2x" src="{% static 'tocatas_intimas/content/img/slider/slide-4-2.jpg' %}" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+    </li>
+
+    <li data-delay="7000" data-transition="slidehorizontal" data-masterspeed="1000">
+      <div class="elements">
+      <h2 class="tp-caption title text-center"
+        data-x="center"
+        data-y="268"
+        data-start="700"
+        data-transform_in="y:top;s:1000;e:Power4.easeOut"
+        data-transform_out="y:top;s:400;e:Power1.easeIn">
+        SIMPLE<br>
+        <b>GREAT</b><br>
+        <b>DESIGN</b>
+      </h2>
+
+      <a href="#"
+        class="tp-caption btn btn-link"
+        data-x="center"
+        data-y="470"
+        data-start="700"
+        data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+        data-transform_out="y:bottom;s:400;e:Power1.easeIn">
+        LEARN MORE<i class="fa fa-angle-right"></i></a>
+      </a>
+      </div>
+
+      <img class="replace-2x" src="{% static 'tocatas_intimas/content/img/slider/slide-4-3.jpg' %}" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+    </li>
+
+    <li data-delay="7000" data-transition="slidehorizontal" data-masterspeed="1000">
+      <div class="elements right-box">
+      <h2 class="tp-caption title text-right"
+        data-x="right"
+        data-hoffset="15"
+        data-y="350"
+        data-start="700"
+        data-transform_in="x:right;s:1000;e:Power4.easeOut"
+        data-transform_out="x:right;s:400;e:Power1.easeIn">
+        PREMIUM<br>
+        <b>SUPPORT</b>
+      </h2>
+
+      <a href="#"
+        class="tp-caption btn btn-link"
+        data-x="right"
+        data-hoffset="15"
+        data-y="480"
+        data-start="700"
+        data-transform_in="y:bottom;s:1000;e:Power4.easeOut"
+        data-transform_out="y:bottom;s:400;e:Power1.easeIn">
+        LEARN MORE<i class="fa fa-angle-right"></i></a>
+      </a>
+      </div>
+
+      <img class="replace-2x" src="{% static 'tocatas_intimas/content/img/slider/slide-4-4.jpg' %}" alt="" data-bgfit="cover" data-bgposition="center top" data-bgrepeat="no-repeat">
+    </li>
+    </ul>
+  </div><!-- .tp-banner -->
   </div>
-  <!-- Buscador Fin -->
+</div><!-- .rs-slider -->
 
-  <!-- Page Content -->
+<section id="works" class="full-width-box cm-padding-bottom-36">
+<header class="page-header">
   <div class="container">
-
-    <!-- Portfolio Section -->
-    <h1>Proximas Tocatas Intimas</h1>
-
-    <div class="row">
-      {% if tocatas %}
-       {% for tocata in tocatas %}
-         <div class="col-lg-4 col-sm-6 portfolio-item">
-           <div class="card h-100">
-             {% if tocata.flayer %}
-              <a href="#"><img class="card-img-top" src="{{ tocata.flayer.url }}" alt=""></a>
-             {% endif %}
-             <div class="card-body">
-               <h4 class="card-title">
-                 <a href="{% url 'tocata' tocata.id %}">{{ tocata.nombre }}</a>
-               </h4>
-               <h6 class="card-title">Adhesion:  {{ tocata.adhesion | intcomma }}</h6>
-               <h6 class="card-title">Fecha: {{ tocata.fecha }}</h6>
-               <p class="card-text">{{ tocata.observaciones }}</p>
-             </div>
-           </div>
-         </div>
-       {% endfor %}
-      {% else %}
-        <p>No hay tocatas</p>
-      {% endif %}
-    </div>
-    <!-- /.row -->
-
+  <h1 class="title">Proximas Tocatas</h1>
   </div>
-  <!-- /.container -->
-  {% endblock %}
-  <!-- Footer -->
+</header>
+
+<div class="container">
+  <div class="portfolio">
+  <div class="clearfix"></div>
+
+  <div class="row filter-elements">
+    {% if tocatas %}
+      {% for tocata in tocatas %}
+      <div class="web-design col-xs-12 col-sm-4 col-md-4">
+      <a href="/portfolio-single.html" class="work">
+        {% if tocata.flayer %}
+        <img class="replace-2x" src="{{ tocata.flayer.url }}" width="370" height="270" alt="">
+        {% endif %}
+        <span class="shadow"></span>
+        <div class="bg-hover"></div>
+        <div class="work-title">
+      <h3 class="title">{{ tocata.nombre }}</h3>
+      <div class="description">{{ tocata.observaciones }}</div>
+        </div>
+      </a>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No hay tocatas</p>
+    {% endif %}
+  </div>
+  </div>
+</div>
+</section><!-- #works -->
+
+{% endblock %}

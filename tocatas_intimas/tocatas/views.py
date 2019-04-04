@@ -1,8 +1,13 @@
 from django.shortcuts import render, get_object_or_404
-from tocatas.models import Tocata, Asistencia
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
+
+from tocatas.models import Tocata, Asistencia
+from artistas.models import Artista
+
 from locacion.elecciones import regiones
 from tocatas.elecciones import medios_pago, tipo_ti
+
 
 # Create your views here.
 def index(request):
@@ -24,21 +29,21 @@ def tocata(request, tocata_id):
     return render(request,'tocatas/tocata.html', context)
 
 def busqueda(request):
-    queryset_list = Tocata.objects.order_by('-fecha')
+    queryset_list_tocata = Tocata.objects.all()
+    queryset_list_artista = Artista.objects.all()
 
-
-    # Descripcion
     if 'palabra' in request.GET:
         palabra = request.GET['palabra']
         if palabra:
-            queryset_list = queryset_list.filter(observaciones__icontains=palabra)
-
+            queryset_list_tocata = queryset_list_tocata.filter(Q(observaciones__icontains=palabra) | Q(nombre__icontains=palabra))
+            queryset_list_artista = queryset_list_artista.filter(Q(nombre__icontains=palabra) | Q(descripcion__icontains=palabra))
 
     context = {
         'regiones': regiones,
         'medios_pago': medios_pago,
         'tipo': tipo_ti,
-        'tocatas': queryset_list,
+        'tocatas': queryset_list_tocata,
+        'artistas': queryset_list_artista,
         'valores':request.GET,
     }
     return render(request,'tocatas/busqueda.html', context)
