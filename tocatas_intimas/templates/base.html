@@ -96,17 +96,17 @@
 					  <a href="{% url 'index' %}">Home</a>
 					</li>
 					<li class="parent">
-					  <a href="#">Tocatas Intimas</a>
+					  <a href="{% url 'tocatas' %}">Tocatas Intimas</a>
 					  <ul class="sub">
-						<li><a href="#">Listado de Tocatas Intimas</a></li>
-						<li><a href="#">Buscar Tocata</a></li>
+						<li><a href="{% url 'tocatas' %}">Listado de Tocatas Intimas</a></li>
+						<li><a href="{% url 'busqueda_tocata' %}">Buscar Tocata</a></li>
 					  </ul>
 					</li>
           <li class="parent">
-					  <a href="#">Artistas</a>
+					  <a href="{% url 'artistas' %}">Artistas</a>
 					  <ul class="sub">
-						<li><a href="#">Listado de Artistas</a></li>
-						<li><a href="#">Buscar Artista</a></li>
+						<li><a href="{% url 'artistas' %}">Listado de Artistas</a></li>
+						<li><a href="{% url 'busqueda_artista' %}">Buscar Artista</a></li>
 					  </ul>
 					</li>
           <li class="parent">
@@ -132,7 +132,7 @@
 
 		<div class="search-active col-sm-9 col-md-9">
 		  <a href="#" class="close"><span>Cerrar</span>×</a>
-		  <form action="{% url 'busqueda' %}" name="search-form" class="search-form">
+		  <form action="{% url 'busqueda_tocata' %}" name="search-form" class="search-form">
 			<input class="search-string form-control" type="search" placeholder="Buscar" name="palabra" value="{{ valores.palabra }}">
 			<button class="search-submit">
 			  <svg x="0" y="0" width="16px" height="16px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">

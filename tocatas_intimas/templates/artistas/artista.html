@@ -1,5 +1,40 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<h1>Artista</h1>
+<!-- Page Content -->
+<div class="container">
+
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">{{ artista.nombre }}
+    <small>{{ artista.nombre }}</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{% url 'index' %}">Home</a>
+    </li>
+    <li class="breadcrumb-item active">{{ artista.nombre }}</li>
+  </ol>
+
+  <!-- Portfolio Item Row -->
+  <div class="row">
+
+    <div class="col-md-8">
+      <img class="img-fluid" src="{{ artista.foto.url }}" alt="">
+    </div>
+
+    <div class="col-md-4">
+      <h3 class="my-3">Descripcion</h3>
+      <p>{{ artista.descripcion }}</p>
+      <h3 class="my-3">Detalles</h3>
+      <ul>
+        <li>email: {{ artista.email }}</li>
+        <li>fono: {{ artista.fono }}</li>
+      </ul>
+    </div>
+
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->
 {% endblock %}

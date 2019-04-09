@@ -12,8 +12,7 @@ from tocatas.elecciones import medios_pago, tipo_ti
 # Create your views here.
 def index(request):
     tocatas = Tocata.objects.all()
-    # tocatas = Tocata.objects.order_by('fecha').filter(tipo=2)
-    paginator = Paginator(tocatas, 2)
+    paginator = Paginator(tocatas, 10)
     page = request.GET.get('page')
     paged_tocatas = paginator.get_page(page)
     context = {
@@ -29,21 +28,20 @@ def tocata(request, tocata_id):
     return render(request,'tocatas/tocata.html', context)
 
 def busqueda(request):
-    queryset_list_tocata = Tocata.objects.all()
-    queryset_list_artista = Artista.objects.all()
+
+    queryset_list = Tocata.objects.all()
 
     if 'palabra' in request.GET:
         palabra = request.GET['palabra']
         if palabra:
-            queryset_list_tocata = queryset_list_tocata.filter(Q(observaciones__icontains=palabra) | Q(nombre__icontains=palabra))
-            queryset_list_artista = queryset_list_artista.filter(Q(nombre__icontains=palabra) | Q(descripcion__icontains=palabra))
+            queryset_list = queryset_list.filter(Q(observaciones__icontains=palabra) | Q(nombre__icontains=palabra) | Q(artista__nombre__icontains=palabra))
+
+    paginator = Paginator(queryset_list, 5)
+    page = request.GET.get('page')
+    paged_tocatas = paginator.get_page(page)
 
     context = {
-        'regiones': regiones,
-        'medios_pago': medios_pago,
-        'tipo': tipo_ti,
-        'tocatas': queryset_list_tocata,
-        'artistas': queryset_list_artista,
-        'valores':request.GET,
+        'tocatas': paged_tocatas,
+        'valores': request.GET,
     }
-    return render(request,'tocatas/busqueda.html', context)
+    return render(request,'tocatas/busqueda_tocata.html', context)

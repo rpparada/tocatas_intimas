@@ -1,59 +1,91 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<!-- Header -->
-<header class="bg-primary text-center py-5 mb-4">
-  <div class="container">
-    <h1 class="font-weight-light text-white">Meet the Team</h1>
-  </div>
-</header>
-
 <!-- Page Content -->
 <div class="container">
+
+  <!-- Page Heading/Breadcrumbs -->
+  <h1 class="mt-4 mb-3">Tocatas Intimas
+    <small>Artistas</small>
+  </h1>
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="index.html">Home</a>
+    </li>
+    <li class="breadcrumb-item active">Artistas</li>
+  </ol>
+
   <div class="row">
-    <!-- Team Member 1 -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-0 shadow">
-        <img src="https://source.unsplash.com/TMgQMXoglsM/500x350" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-0">Team Member</h5>
-          <div class="card-text text-black-50">Web Developer</div>
+    {% if artistas %}
+      {% for artista in artistas %}
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="{{ artista.foto.url }}" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="{% url 'artista' artista.id %}">{{ artista.nombre }}</a>
+              </h4>
+              <p class="card-text">{{ artista.descripcion }}</p>
+            </div>
+          </div>
         </div>
+      {% endfor  %}
+    {% else %}
+      <div class="col-md-12">
+        <p>No hay Artistas</p>
       </div>
-    </div>
-    <!-- Team Member 2 -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-0 shadow">
-        <img src="https://source.unsplash.com/9UVmlIb0wJU/500x350" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-0">Team Member</h5>
-          <div class="card-text text-black-50">Web Developer</div>
-        </div>
-      </div>
-    </div>
-    <!-- Team Member 3 -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-0 shadow">
-        <img src="https://source.unsplash.com/sNut2MqSmds/500x350" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-0">Team Member</h5>
-          <div class="card-text text-black-50">Web Developer</div>
-        </div>
-      </div>
-    </div>
-    <!-- Team Member 4 -->
-    <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-0 shadow">
-        <img src="https://source.unsplash.com/ZI6p3i9SbVU/500x350" class="card-img-top" alt="...">
-        <div class="card-body text-center">
-          <h5 class="card-title mb-0">Team Member</h5>
-          <div class="card-text text-black-50">Web Developer</div>
-        </div>
-      </div>
-    </div>
+    {% endif %}
   </div>
-  <!-- /.row -->
+
+  <!-- Pagination -->
+  {% if artistas.has_other_pages %}
+    <ul class="pagination justify-content-center">
+      {% if artistas.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{artistas.previous_page_number}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disable">
+          <a class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {% for i in artistas.paginator.page_range %}
+        {% if artistas.number == i %}
+          <li class="page-item active">
+            <a class="page-link">{{i}}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a href="?page={{i}}" class="page-link">{{i}}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if artistas.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{artistas.next_page_number}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      {% else %}
+      <li class="page-item disable">
+        <a class="page-link" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  {% endif %}
 
 </div>
-<!-- /.container -->
 {% endblock %}
