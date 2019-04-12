@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<body class="page-login-promo blur-page" data-blur-image="{% static 'tocatas_intimas/img_bkp/foto01.jpg' %}" data-blur-amount="1">
+
+<div class="page-box">
+
+
+<section id="main">
+  <!-- Alertas -->
+  {% include "parciales/_alertas.html" %}
+  <div class="container login-register">
+    <div class="row">
+      <div class="col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<div data-appear-animation="bounceInDown">
+		  <div class="rotation">
+			<div class="front-end">
+			  <div class="form-content">
+				<form class="form-box login-form form-validator" action="{% url 'ingresar_registrar' %}" method="POST" name="ingresa">
+          {% csrf_token %}
+				  <h3 class="title">Ingresar <small>o <a href="#" class="switch-form sing-up">Regístrate</a></small></h3>
+				  <p>Si ya tienes cuenta, por favor ingresa.</p>
+				  <div class="form-group">
+					<label>Direccion email<span class="required">*</span></label>
+					<input class="form-control" type="mail" name="Email Login" required>
+				  </div>
+
+				  <div class="form-group">
+					<label>Contraseña: <span class="required">*</span></label>
+					<input class="form-control" type="password" name="Password Login" required>
+				  </div>
+
+				  <div class="form-group">
+					<label class="checkbox">
+					  <input type="checkbox"> Recordar contraseña
+					</label>
+				  </div>
+
+				  <div class="buttons-box clearfix">
+					<button class="btn btn-default" name="botoningresa" type="submit" value="test2">Ingresar</button>
+					<a href="#" class="switch-form forgot">Olvidate tu contraseña?</a>
+					<span class="required"><b>*</b> Campos requeridos</span>
+				  </div>
+				</form><!-- .form-box -->
+			  </div>
+			</div><!-- .front-end -->
+
+			<div class="back-end">
+			  <div class="form-content">
+				<form class="form-box register-form form-validator" action="{% url 'ingresar_registrar' %}" method="POST" name="registra">
+          {% csrf_token %}
+				  <h3 class="title"> <small><a href="#" class="switch-form sing-in">Ingresar</a> o </small>Regístrate</h3>
+				  <p>Si ya tienes cuenta, por favor ingresa.</p>
+
+				  <div class="form-group">
+					<label>Nombre completo: <span class="required">*</span></label>
+					<input class="form-control" type="text" name="Full Name Register" required>
+				  </div>
+
+				  <div class="form-group">
+					<label>Nombre de usuario: <span class="required">*</span></label>
+					<input class="form-control" type="text" name="Username Register" required>
+				  </div>
+
+				  <div class="form-group">
+					<label>Contraseña: <span class="required">*</span></label>
+					<input class="form-control" type="password" name="Password Register" required>
+				  </div>
+
+          <div class="form-group">
+					<label>Repetir contraseña: <span class="required">*</span></label>
+					<input class="form-control" type="password" name="Re-Password Register" required>
+				  </div>
+
+				  <div class="form-group">
+					<label>Direccion email<span class="required">*</span></label>
+					<input class="form-control" type="email" name="Email Register" required>
+				  </div>
+
+				  <div class="buttons-box clearfix">
+					<button class="btn btn-default" name="botoncrea" type="submit" value="test">Crear cuenta</button>
+					<span class="required"><b>*</b> Campos requeridos</span>
+				  </div>
+				</form><!-- .form-box -->
+			  </div>
+			</div><!-- .back-end -->
+
+			<div class="back-end">
+			  <div class="form-content">
+				<form class="form-box forgot-form form-validator">
+				  <h3 class="title">Recupera tu contraseña aqui</h3>
+				  <p>Por favor ingresa tu dirección email. Recibirás un enlace para reiniciar tu contraseña.</p>
+
+				  <div class="form-group">
+					<label>Dirección email <span class="required">*</span></label>
+					<input class="form-control" type="email" name="Email Register" required>
+				  </div>
+
+				  <div class="buttons-box clearfix">
+					<button class="btn btn-default">Enviar</button>
+					<button class="btn btn-border btn-inverse switch-form sing-in"><i class="fa fa-long-arrow-left"></i> Volver a ingreso</button>
+					<span class="required"><b>*</b> Campos requeridos</span>
+				  </div>
+				</form><!-- .form-box -->
+			  </div>
+			</div><!-- .back-end -->
+		  </div>
+		</div>
+      </div>
+    </div>
+  </div><!-- .container -->
+</section><!-- #main -->
+
+</div><!-- .page-box -->
+
+{% endblock %}
