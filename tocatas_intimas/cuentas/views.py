@@ -10,8 +10,6 @@ def ingresar_registrar(request):
         if request.method == 'POST':
             email = request.POST['Email Login']
             contra = request.POST['Password Login']
-            print(email)
-            print(contra)
             user = auth.authenticate(username=email, password=contra)
 
             if user is not None:
@@ -58,7 +56,11 @@ def ingresar_registrar(request):
     return render(request,'cuentas/ingresar_registrar.html')
 
 def salir(request):
-    return redirect('index')
+    print('Hola')
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request,'Ya estas fuera')
+        return redirect('index')
 
 def micuenta(request):
     return render(request,'cuentas/micuenta.html')

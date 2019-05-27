@@ -119,8 +119,16 @@
           <li class="parent">
             <a href="#">Mi Cuenta</a>
             <ul class="sub">
-            <li><a href="{% url 'ingresar_registrar' %}">Ingresar / Registrarse</a></li>
-            <li><a href="{% url 'micuenta' %}">Mi Cuenta</a></li>
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'micuenta' %}">Hola {{user.username}}(Mi Cuenta)</a></li>
+                <li> <a href="javascript:{document.getElementById('logout').submit()}">Salir</a></li>
+                <form action="{% url 'salir' %}" method="POST" id="logout">
+                  {% csrf_token %}
+                  <input type="hidden">
+                </form>
+              {% else %}
+                <li><a href="{% url 'ingresar_registrar' %}">Ingresar/Registrarse</a></li>
+              {% endif %}
             </ul>
           </li>
 				  </ul>
